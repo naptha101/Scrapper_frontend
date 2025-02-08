@@ -31,7 +31,7 @@ const EventList = () => {
     return (
         <div className="min-h-screen bg-gray-100 p-6">
             {/* Header */}
-            <h2 className="text-3xl font-bold text-center text-white bg-gradient-to-r from-blue-500 to-purple-600 py-4 rounded-lg shadow-md">
+            <h2 className="text-3xl font-bold text-center text-white bg-gradient-to-r bg-blue-500  py-4 rounded-lg shadow-md">
                 🎉 Events in Sydney
             </h2>
 
@@ -43,7 +43,7 @@ const EventList = () => {
                         <h3 className="text-xl font-semibold mt-3 text-gray-800">{event.title}</h3>
                         <p className="text-gray-600 mt-1">{event.date} • {event.location}</p>
                         <button 
-                            className="mt-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition hover:opacity-80"
+                            className="mt-3 bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition hover:opacity-80"
                             onClick={() => setToggle(true)}
                         >
                             🎟 Get Tickets
