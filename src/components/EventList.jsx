@@ -7,7 +7,7 @@ const EventList = () => {
     const [toggle, setToggle] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/events')
+        axios.get(import.meta.env.FRONT_URL+'/api/events')
             .then(res => setEvents(res.data))
             .catch(err => console.error(err));
     }, []);
@@ -16,7 +16,7 @@ const EventList = () => {
         e.preventDefault();
 
         try {
-            await axios.post('http://localhost:5000/api/email', { email });
+            await axios.post(import.meta.env.FRONT_URL+'/api/email', { email });
             alert("✅ Email Submitted Successfully!");
             setToggle(false);
             setEmail("");
