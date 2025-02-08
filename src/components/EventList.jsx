@@ -2,21 +2,23 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const EventList = () => {
-    const [events, setEvents] = useState([]);
+    const [events, setEvents] = useState(null);
     const [email, setEmail] = useState("");
     const [toggle, setToggle] = useState(false);
 
-    useEffect(() => {
-        axios.get(import.meta.env.FRONT_URL+'/api/events')
+    useEffect( () => {
+        const fetchData= async ()=>{await axios.get(import.meta.env.VITE_FRONT_URL+'/api/events')
             .then(res => setEvents(res.data))
-            .catch(err => console.error(err));
-    }, []);
+            .catch(err => console.error(err));}
+           fetchData()
+           console.log(events)
+    }, [events]);
 
     const sendEmail = async (e) => {
         e.preventDefault();
 
         try {
-            await axios.post(import.meta.env.FRONT_URL+'/api/email', { email });
+            await axios.post(import.meta.env.VITE_FRONT_URL+'/api/email', { email }); 
             alert("✅ Email Submitted Successfully!");
             setToggle(false);
             setEmail("");
@@ -35,7 +37,7 @@ const EventList = () => {
 
             {/* Event Cards */}
             <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {events.map((event, index) => (
+                {events!=null&&events.map((event, index) => (
                     <div key={event._id || index} className="bg-white shadow-lg rounded-lg p-4 transition transform hover:scale-105 hover:shadow-xl">
                         <img src={event.image} alt={event.title} className="w-full h-48 object-cover rounded-lg" />
                         <h3 className="text-xl font-semibold mt-3 text-gray-800">{event.title}</h3>
